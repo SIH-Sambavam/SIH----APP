@@ -1,0 +1,72 @@
+name: blueguard_app
+description: "A new Flutter project for BlueGuard."
+publish_to: 'none' 
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # For Google Maps integration
+  google_maps_flutter: ^2.5.0
+  
+  # For Mapbox integration
+  mapbox_maps_flutter: ^1.0.0
+
+  # For nice icons and theming
+  cupertino_icons: ^1.0.2
+  
+  # For API calls
+  http: ^1.1.0
+  
+  # For voice functionality
+  speech_to_text: ^7.0.0
+  flutter_tts: ^4.0.2
+  
+  # For LiveKit real-time communication
+  livekit_client: ^2.1.0
+  livekit_components: ^1.2.2
+  permission_handler: ^11.0.1
+  crypto: ^3.0.3
+  
+  # For official LiveKit implementation
+  provider: ^6.1.1
+  flutter_dotenv: ^5.1.0
+  logging: ^1.2.0
+  uuid: ^4.2.1
+  intl: ^0.19.0
+  flutter_sficon: ^1.0.0
+  url_launcher: ^6.2.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/fish/
+    - .env
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  # fonts:
+  #   - family: Inter
+  #     fonts:
+  #       - asset: fonts/Inter-Regular.ttf
+  #       - asset: fonts/Inter-Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
