@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:logging/logging.dart';
+import 'package:crypto/crypto.dart';
 
 /// Data class representing the connection details needed to join a LiveKit room
 /// This includes the server URL, room name, participant info, and auth token
@@ -32,73 +32,25 @@ class ConnectionDetails {
 class TokenService {
   static final _logger = Logger('TokenService');
 
-  // LiveKit Cloud API endpoint for sandbox token generation
-  static const String _tokenApiUrl = 'https://cloud-api.livekit.io/api/sandbox/connection-details';
-  
   // Sandbox ID from .env file with fallback
   static const String _fallbackSandboxId = 'blueguard-tejjfg';
 
-  String get sandboxId => dotenv.env['LIVEKIT_SANDBOX_ID'] ?? _fallbackSandboxId;
+  String get sandboxId =>
+      dotenv.env['LIVEKIT_SANDBOX_ID'] ?? _fallbackSandboxId;
 
-  /// Main method to get connection details using LiveKit Cloud API
-  Future<ConnectionDetails> fetchConnectionDetails({
-    required String roomName,
-    required String participantName,
-  }) async {
-    try {
-      _logger.info('Requesting token from LiveKit Cloud API for room: $roomName');
-      
-      // Prepare the request
-      final response = await http.post(
-        Uri.parse(_tokenApiUrl),
-        headers: {
-          'X-Sandbox-ID': sandboxId,
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode({
-          'room_name': roomName,
-          'participant_name': participantName,
-        }),
-      );
-
-      if (response.statusCode == 200) {
-        final Map<String, dynamic> jsonData = jsonDecode(response.body);
-        
-        _logger.info('Successfully received connection details from LiveKit Cloud');
-        _logger.info('Server URL: ${jsonData['serverUrl']}');
-        
-        return ConnectionDetails.fromJson(jsonData);
-      } else {
-        throw Exception('Failed to get connection details: ${response.statusCode} ${response.body}');
-      }
-    } catch (error) {
-      _logger.severe('Error fetching connection details: $error');
-      rethrow;
-    }
-  }
-}
+  // Get credentials from environment variables
+  String get apiKey => dotenv.env['LIVEKIT_API_KEY'] ?? 'API4oeZuqm7msUc';
+  String get apiSecret =>
+      dotenv.env['LIVEKIT_API_SECRET'] ??
+      '459I9M50On3fB5Hgk116VNegOzer7WVPovPKgVDy7H1A';
+  String get serverUrl =>
+      dotenv.env['LIVEKIT_URL'] ?? 'wss://blueguard-tejjfg.livekit.cloud';
 
   /// Main method to get connection details with proper JWT token
   Future<ConnectionDetails> fetchConnectionDetails({
     required String roomName,
     required String participantName,
   }) async {
-    // Validate credentials
-    if (apiKey == 'YOUR_ACTUAL_API_KEY_HERE' ||
-        apiSecret == 'YOUR_ACTUAL_API_SECRET_HERE') {
-      throw Exception('''
-LiveKit credentials not configured properly!
-
-To fix this:
-1. Go to LiveKit Cloud dashboard: https://cloud.livekit.io/
-2. Find your sandbox "blueguard-tejjfg"
-3. Get the API Key and API Secret for this sandbox
-4. Update the credentials in token_service_blueguard.dart
-
-Your sandbox URL is: $serverUrl
-''');
-    }
-
     try {
       // Generate proper JWT token
       final token = _generateJWTToken(

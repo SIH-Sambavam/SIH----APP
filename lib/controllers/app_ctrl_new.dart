@@ -7,7 +7,6 @@ import 'package:livekit_components/livekit_components.dart' as components;
 import 'package:logging/logging.dart';
 import 'package:uuid/uuid.dart';
 
-import '../exts.dart';
 import '../services/token_service_blueguard.dart';
 
 enum AppScreenState { welcome, agent }
@@ -174,9 +173,9 @@ class AppCtrl extends ChangeNotifier {
     _logger.info("Starting 20-second timer to check for AGENT participant...");
 
     _agentConnectionTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      // Check if there's an agent participant
-      final hasAgent = room.remoteParticipants.values
-          .any((participant) => participant.isAgent);
+      // Check if there's an agent participant (check by identity)
+      final hasAgent = room.remoteParticipants.values.any((participant) =>
+          participant.identity.toLowerCase().contains('agent'));
 
       if (hasAgent) {
         _logger.info("AGENT participant found, cancelling timer");

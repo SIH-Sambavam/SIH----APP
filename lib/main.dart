@@ -4,6 +4,7 @@ import 'screens/dashboard_screen.dart';
 import 'screens/fish_info_screen.dart';
 import 'screens/voice_assistant_screen.dart';
 import 'screens/chat_assistant_screen.dart';
+import 'services/permission_helper.dart';
 
 // Main function to run the app
 void main() async {
@@ -86,6 +87,15 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0; // State variable to track the selected tab
+
+  @override
+  void initState() {
+    super.initState();
+    // Request permissions when the app starts
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      PermissionHelper.requestRequiredPermissions(context);
+    });
+  }
 
   // List of the screens to be displayed
   static final List<Widget> _widgetOptions = <Widget>[

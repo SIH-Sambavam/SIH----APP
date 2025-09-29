@@ -13,8 +13,8 @@ dependencies:
   # For Google Maps integration
   google_maps_flutter: ^2.5.0
   
-  # For Mapbox integration
-  mapbox_maps_flutter: ^1.0.0
+  # For Mapbox integration - Updated to latest version
+  mapbox_maps_flutter: ^2.11.0
 
   # For nice icons and theming
   cupertino_icons: ^1.0.2

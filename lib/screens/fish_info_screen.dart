@@ -120,6 +120,9 @@ class _FishInfoScreenState extends State<FishInfoScreen> {
                               height: 60,
                               fit: BoxFit.cover,
                               errorBuilder: (context, error, stackTrace) {
+                                debugPrint(
+                                    'Image load error for ${fish.scientificName}: $error');
+                                debugPrint('Failed URL: ${fish.imageUrl}');
                                 return Container(
                                   width: 60,
                                   height: 60,

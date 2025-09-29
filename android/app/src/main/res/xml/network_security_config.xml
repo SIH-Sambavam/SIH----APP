@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- Debug configuration - allows all cleartext traffic -->
+    <debug-overrides>
+        <trust-anchors>
+            <certificates src="system"/>
+            <certificates src="user"/>
+        </trust-anchors>
+    </debug-overrides>
+    
+    <domain-config cleartextTrafficPermitted="true">
+        <!-- Mapbox domains -->
+        <domain includeSubdomains="true">api.mapbox.com</domain>
+        <domain includeSubdomains="true">mapbox.com</domain>
+        <domain includeSubdomains="true">tiles.mapbox.com</domain>
+        <domain includeSubdomains="true">events.mapbox.com</domain>
+        <domain includeSubdomains="true">a.tiles.mapbox.com</domain>
+        <domain includeSubdomains="true">b.tiles.mapbox.com</domain>
+        <domain includeSubdomains="true">c.tiles.mapbox.com</domain>
+        <domain includeSubdomains="true">d.tiles.mapbox.com</domain>
+        
+        <!-- Google services -->
+        <domain includeSubdomains="true">googleapis.com</domain>
+        <domain includeSubdomains="true">gstatic.com</domain>
+        <domain includeSubdomains="true">encrypted-tbn0.gstatic.com</domain>
+        <domain includeSubdomains="true">encrypted-tbn1.gstatic.com</domain>
+        <domain includeSubdomains="true">encrypted-tbn2.gstatic.com</domain>
+        <domain includeSubdomains="true">encrypted-tbn3.gstatic.com</domain>
+        
+        <!-- Image hosting domains -->
+        <domain includeSubdomains="true">static.wixstatic.com</domain>
+        <domain includeSubdomains="true">kaiyukan.com</domain>
+        <domain includeSubdomains="true">www.kaiyukan.com</domain>
+        <domain includeSubdomains="true">media.fishbase.org</domain>
+        <domain includeSubdomains="true">upload.wikimedia.org</domain>
+        <domain includeSubdomains="true">commons.wikimedia.org</domain>
+        <domain includeSubdomains="true">5.imimg.com</domain>
+        <domain includeSubdomains="true">cdn.prod.website-files.com</domain>
+        <domain includeSubdomains="true">cdn.shopify.com</domain>
+        <domain includeSubdomains="true">image.slidesharecdn.com</domain>
+        <domain includeSubdomains="true">wp.web.fishboxapp.com</domain>
+        
+        <!-- LiveKit domains -->
+        <domain includeSubdomains="true">livekit.cloud</domain>
+        <domain includeSubdomains="true">blueguard-tejjfg.livekit.cloud</domain>
+        
+        <!-- Allow localhost for development -->
+        <domain includeSubdomains="true">localhost</domain>
+        <domain includeSubdomains="true">127.0.0.1</domain>
+        <domain includeSubdomains="true">10.0.2.2</domain>
+    </domain-config>
+    <!-- Allow cleartext traffic for all domains in debug builds -->
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system"/>
+        </trust-anchors>
+    </base-config>
+</network-security-config>
