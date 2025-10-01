@@ -13,9 +13,8 @@ A cross-platform Flutter app for marine species monitoring, fish information, an
 
 ## Screenshots
 
-<!-- Add screenshots in docs/screenshots/ and update the links below -->
-<!-- ![Fish Info Screen](docs/screenshots/fish_info.png) -->
-<!-- ![Map Screen](docs/screenshots/map_screen.png) -->
+![Fish Info Screen](docs/screenshots/fish_info.png)
+![Map Screen](docs/screenshots/map_screen.png)
 
 ## Getting Started
 
